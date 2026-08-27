@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Портфолио Анны Москалевой - специалиста по внедрению и автоматизации Bitrix24.">
   <title>Анна Москалева - специалист по Bitrix24</title>
-  <link rel="stylesheet" href="css/style.css?v=2">
-  <script src="js/app.js" defer></script>
+  <link rel="stylesheet" href="css/style.css?v=3">
+  <script src="js/app.js?v=2" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -39,7 +39,6 @@
           <p class="hero-name">Анна Москалева</p>
           <h1 id="hero-title">Специалист по внедрению и автоматизации Bitrix24</h1>
           <p class="hero-description">Помогаю превращать реальные рабочие процессы компании в понятные и управляемые процессы внутри Bitrix24.</p>
-          <a class="primary-link" href="#skills">Посмотреть структуру портфолио</a>
         </div>
         <figure class="profile-photo">
           <img src="images/profile/anna.jpg" alt="Анна Москалева" loading="eager">
@@ -104,6 +103,11 @@
             <summary>Приложения и AI-инструменты</summary>
             <p>Создаю локальные статичные приложения для Bitrix24 и небольшие прикладные решения с использованием вайбкодинга. Использую ChatGPT и Codex для проектирования, разработки, анализа и тестирования.</p>
             <p>Осваиваю HTML, CSS, JavaScript и Git и применяю их в учебных и прикладных проектах.</p>
+          </details>
+          <details class="skill-card">
+            <summary>Разработка локальных статичных приложений</summary>
+            <p>Разрабатываю небольшие локальные приложения на HTML, CSS и JavaScript, которые можно использовать как прикладные решения и демонстрационные прототипы для Bitrix24.</p>
+            <p>В качестве портфолио предлагаю этот сайт: здесь можно ознакомиться с моими навыками, кейсами, сертификатами и подходом к работе.</p>
           </details>
         </div>
       </section>
@@ -204,7 +208,7 @@
           <figure class="certificate-card"><img src="images/certificates/cross-channel-analytics.png" alt="Сертификат по сквозной аналитике в Bitrix24 CRM" loading="lazy"><figcaption>Сквозная аналитика в Bitrix24 CRM</figcaption></figure>
         </div>
       </section>
-      <section class="section-card" id="about" aria-labelledby="about-title">
+      <section class="section-card section-card--wide about-section" id="about" aria-labelledby="about-title">
         <div class="about-heading"><p class="section-number" aria-hidden="true">04</p><h2 id="about-title">Обо мне</h2><p class="about-lead">14 лет в продажах, а теперь внедрение Bitrix24, системность и любовь к процессам.</p></div>
         <div class="about-copy">
           <p>Я прошла путь от менеджера по продажам до коуча и руководителя отдела продаж, обучала менеджеров и выстраивала работу команд.</p>
@@ -231,5 +235,13 @@
       <p class="logo" aria-hidden="true">АМ</p>
     </div>
   </footer>
+  <div class="lightbox" id="image-lightbox" hidden>
+    <div class="lightbox__backdrop" data-lightbox-close></div>
+    <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-caption">
+      <button class="lightbox__close" type="button" aria-label="Закрыть изображение" data-lightbox-close>×</button>
+      <img class="lightbox__image" src="" alt="">
+      <p class="lightbox__caption" id="lightbox-caption"></p>
+    </div>
+  </div>
 </body>
 </html>
