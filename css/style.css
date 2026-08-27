@@ -38,6 +38,45 @@
   --shadow: 0 18px 50px rgba(41, 91, 120, .12);
 }
 
+[data-theme="accessible"] {
+  --bg: #fff;
+  --surface: #fff;
+  --surface-blue: #fff;
+  --text: #111;
+  --muted: #222;
+  --accent: #003b8f;
+  --accent-dark: #00245a;
+  --border: #111;
+  --shadow: none;
+  --radius-lg: 12px;
+  --radius-md: 10px;
+}
+
+/* ==================== Режим для слабовидящих ==================== */
+[data-theme="accessible"] body { background: var(--bg); font-size: 1.08rem; line-height: 1.8; }
+[data-theme="accessible"] .site-header { border-bottom: 2px solid var(--border); background: var(--surface); backdrop-filter: none; }
+[data-theme="accessible"] .nav-list a { color: var(--text); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+[data-theme="accessible"] .nav-list a::after { display: none; }
+[data-theme="accessible"] .theme-switcher select { min-height: 46px; border: 2px solid var(--border); border-radius: 8px; background: var(--surface); }
+[data-theme="accessible"] .hero-grid, [data-theme="accessible"] .section-card { border: 2px solid var(--border); box-shadow: none; background: var(--surface); }
+[data-theme="accessible"] .hero-grid { grid-template-columns: 1fr; }
+[data-theme="accessible"] .hero-grid::before { display: none; }
+[data-theme="accessible"] .hero-copy { padding-block: clamp(44px, 7vw, 88px); }
+[data-theme="accessible"] h1 { font-size: clamp(2.6rem, 5vw, 4.8rem); line-height: 1.12; letter-spacing: -.03em; }
+[data-theme="accessible"] h2 { font-size: clamp(2rem, 3.2vw, 3rem); line-height: 1.2; letter-spacing: -.02em; }
+[data-theme="accessible"] .hero-description, [data-theme="accessible"] .section-card > p, [data-theme="accessible"] .about-copy p, [data-theme="accessible"] .skills-lead { color: var(--text); }
+[data-theme="accessible"] .primary-link { border: 2px solid var(--text); border-radius: 8px; color: #fff; background: var(--accent); box-shadow: none; }
+[data-theme="accessible"] .primary-link:hover { color: #fff; background: var(--accent-dark); }
+[data-theme="accessible"] .profile-photo { border: 2px solid var(--border); background: var(--surface); }
+[data-theme="accessible"] .profile-photo img { border-radius: 50%; box-shadow: none; }
+[data-theme="accessible"] .skill-card, [data-theme="accessible"] .certificate-card { border: 2px solid var(--border); box-shadow: none; }
+[data-theme="accessible"] .skill-card summary { font-size: 1.05rem; }
+[data-theme="accessible"] .case-label { border: 2px solid var(--border); color: var(--text); background: var(--surface); }
+[data-theme="accessible"] .photo-grid img, [data-theme="accessible"] .certificate-card img, [data-theme="accessible"] .case-card__media img { border: 2px solid var(--border); box-shadow: none; }
+[data-theme="accessible"] a:focus-visible, [data-theme="accessible"] button:focus-visible, [data-theme="accessible"] select:focus-visible, [data-theme="accessible"] summary:focus-visible { outline: 4px solid #d00000; outline-offset: 4px; }
+[data-theme="accessible"] .section-card:hover, [data-theme="accessible"] .skill-card:hover, [data-theme="accessible"] .certificate-card:hover { transform: none; box-shadow: none; }
+[data-theme="accessible"] *, [data-theme="accessible"] *::before, [data-theme="accessible"] *::after { transition: none !important; }
+
 /* ==================== Выраженный стиль Bitrix24 ==================== */
 [data-theme="bitrix"] body {
   background-color: #edf8ff;
@@ -367,12 +406,101 @@ body.lightbox-open { overflow: hidden; }
 .lightbox[hidden] { display: none; }
 .lightbox { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 22px; }
 .lightbox__backdrop { position: absolute; inset: 0; background: rgba(7, 20, 38, .78); backdrop-filter: blur(5px); }
-.lightbox__dialog { position: relative; z-index: 1; display: grid; justify-items: center; width: min(94vw, 1120px); max-height: 94vh; padding: 18px; border: 1px solid rgba(255,255,255,.28); border-radius: 20px; background: var(--surface); box-shadow: 0 24px 70px rgba(0,0,0,.3); }
-.lightbox__image { display: block; width: auto; max-width: 100%; height: auto; max-height: 78vh; border-radius: 10px; object-fit: contain; }
+.lightbox__dialog { position: relative; z-index: 1; display: grid; justify-items: center; width: min(98vw, 1380px); max-height: 96vh; padding: 18px; border: 1px solid rgba(255,255,255,.28); border-radius: 20px; background: var(--surface); box-shadow: 0 24px 70px rgba(0,0,0,.3); }
+.lightbox__viewport { display: grid; width: 100%; height: min(82vh, 760px); overflow: hidden; place-items: center; border-radius: 10px; background: #f4f6f8; }
+.lightbox__viewport.is-zoomed { cursor: grab; touch-action: none; }
+.lightbox__viewport.is-panning { cursor: grabbing; }
+.lightbox__image { display: block; width: auto; max-width: 100%; height: auto; max-height: 100%; border-radius: 10px; object-fit: contain; transform: translate(0, 0) scale(1); transform-origin: center center; transition: transform 120ms ease; }
 .lightbox__close { position: absolute; top: 8px; right: 10px; z-index: 2; display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid var(--border); border-radius: 50%; color: var(--text); background: var(--surface); font-size: 1.65rem; line-height: 1; cursor: pointer; box-shadow: 0 6px 16px rgba(0,0,0,.14); }
 .lightbox__close:hover { color: #fff; background: var(--accent); }
+.lightbox__controls { display: flex; align-items: center; width: min(100%, 560px); gap: 10px; margin-top: 12px; }
+.lightbox__controls label { flex: 0 0 auto; color: var(--muted); font-size: .85rem; font-weight: 700; }
+.lightbox__controls input[type="range"] { flex: 1 1 auto; accent-color: var(--accent); cursor: pointer; }
+.lightbox__controls output { min-width: 52px; color: var(--text); font-size: .9rem; font-variant-numeric: tabular-nums; text-align: right; }
+.lightbox__controls button { min-height: 34px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); background: var(--surface); font: inherit; cursor: pointer; }
+.lightbox__controls button:hover { border-color: var(--accent); color: var(--accent-dark); }
 .lightbox__caption { max-width: 90%; margin: 12px 0 0; color: var(--muted); font-size: .84rem; text-align: center; }
-@media (max-width: 620px) { .lightbox { padding: 10px; } .lightbox__dialog { width: 96vw; padding: 12px; border-radius: 16px; } .lightbox__image { max-height: 78vh; } }
+@media (max-width: 620px) { .lightbox { padding: 10px; } .lightbox__dialog { width: 96vw; padding: 12px; border-radius: 16px; } .lightbox__viewport { height: 72vh; } .lightbox__controls { flex-wrap: wrap; } .lightbox__controls input[type="range"] { order: 3; flex-basis: 100%; } }
+
+/* Увеличенный масштаб текста в режиме для слабовидящих */
+[data-theme="accessible"] body { font-family: Arial, Helvetica, sans-serif; font-size: 1.35rem; line-height: 1.8; }
+[data-theme="accessible"] .container { width: min(calc(100% - 32px), var(--container)); }
+[data-theme="accessible"] .header-inner, [data-theme="accessible"] .footer-inner { min-height: 88px; gap: 24px; }
+[data-theme="accessible"] .logo { font-size: 1.7rem; }
+[data-theme="accessible"] .nav-list { gap: 24px; }
+[data-theme="accessible"] .nav-list a { font-size: 1.15rem; }
+[data-theme="accessible"] .theme-switcher { font-size: 1rem; }
+[data-theme="accessible"] .theme-switcher select { font-size: 1rem; }
+[data-theme="accessible"] .hero { padding-top: 36px; }
+[data-theme="accessible"] .hero-name { font-size: 1.35rem; }
+[data-theme="accessible"] h1 { font-size: clamp(3rem, 6vw, 5.2rem); line-height: 1.12; }
+[data-theme="accessible"] h2 { font-size: clamp(2.5rem, 4vw, 3.4rem); }
+[data-theme="accessible"] h3 { font-size: clamp(1.55rem, 2.4vw, 2rem); }
+[data-theme="accessible"] p, [data-theme="accessible"] li, [data-theme="accessible"] summary { font-size: 1.18rem; }
+[data-theme="accessible"] .hero-description, [data-theme="accessible"] .section-card > p, [data-theme="accessible"] .about-copy p, [data-theme="accessible"] .skills-lead { font-size: 1.2rem; }
+[data-theme="accessible"] .section-number { font-size: 1rem; }
+[data-theme="accessible"] .case-kicker { font-size: 1rem; }
+[data-theme="accessible"] .case-label, [data-theme="accessible"] .leisure-group__heading span { font-size: 1rem; }
+[data-theme="accessible"] .case-steps { gap: 16px; }
+[data-theme="accessible"] .case-role { font-size: 1.12rem; }
+[data-theme="accessible"] .skill-card p { font-size: 1.12rem; }
+[data-theme="accessible"] .certificate-card figcaption, [data-theme="accessible"] .photo-grid figcaption { font-size: 1rem; }
+[data-theme="accessible"] .skills-grid, [data-theme="accessible"] .certificates-grid, [data-theme="accessible"] .leisure-groups { gap: 18px; }
+[data-theme="accessible"] .section-card, [data-theme="accessible"] .skill-card, [data-theme="accessible"] .certificate-card { padding: clamp(24px, 4vw, 46px); }
+[data-theme="accessible"] .certificate-card { padding: 12px; }
+[data-theme="accessible"] .lightbox__close, [data-theme="accessible"] .lightbox__controls button { min-width: 48px; min-height: 46px; font-size: 1.2rem; }
+[data-theme="accessible"] .lightbox__controls label, [data-theme="accessible"] .lightbox__controls output { font-size: 1.2rem; }
+[data-theme="accessible"] .lightbox__caption { font-size: 1.05rem; }
+@media (max-width: 620px) {
+  [data-theme="accessible"] body { font-size: 1.2rem; }
+  [data-theme="accessible"] html, [data-theme="accessible"] body { overflow-x: hidden; }
+  [data-theme="accessible"] .site-header { overflow: hidden; }
+  [data-theme="accessible"] .header-inner, [data-theme="accessible"] .site-nav { min-width: 0; max-width: 100%; }
+  [data-theme="accessible"] .site-nav { overflow: visible; }
+  [data-theme="accessible"] .nav-list { width: 100%; flex-wrap: wrap; gap: 12px 18px; }
+  [data-theme="accessible"] .container { width: calc(100vw - 24px); max-width: var(--container); }
+  [data-theme="accessible"] .hero-grid, [data-theme="accessible"] .section-card, [data-theme="accessible"] .hero-copy { min-width: 0; }
+  [data-theme="accessible"] h1, [data-theme="accessible"] h2, [data-theme="accessible"] h3, [data-theme="accessible"] p, [data-theme="accessible"] li, [data-theme="accessible"] summary { max-width: 100%; overflow-wrap: anywhere; }
+  [data-theme="accessible"] .skills-heading > div, [data-theme="accessible"] .skills-intro, [data-theme="accessible"] .skills-lead { min-width: 0; }
+  [data-theme="accessible"] .nav-list a { font-size: 1.05rem; }
+  [data-theme="accessible"] h1 { font-size: clamp(2.7rem, 13vw, 4rem); }
+  [data-theme="accessible"] h2 { font-size: clamp(2.2rem, 10vw, 3rem); }
+  [data-theme="accessible"] p, [data-theme="accessible"] li, [data-theme="accessible"] summary, [data-theme="accessible"] .hero-description, [data-theme="accessible"] .section-card > p, [data-theme="accessible"] .about-copy p, [data-theme="accessible"] .skills-lead { font-size: 1.08rem; }
+  [data-theme="accessible"] .section-card, [data-theme="accessible"] .skill-card { padding: 24px 18px; }
+}
+
+/* Максимально крупный текст для уверенного чтения */
+[data-theme="accessible"] body { font-size: 2.4rem; line-height: 1.7; }
+[data-theme="accessible"] .nav-list a { font-size: 1.5rem; }
+[data-theme="accessible"] .theme-switcher, [data-theme="accessible"] .theme-switcher select { font-size: 1.35rem; }
+[data-theme="accessible"] .hero-name, [data-theme="accessible"] .section-number, [data-theme="accessible"] .case-kicker { font-size: 1.55rem; }
+[data-theme="accessible"] h1 { font-size: clamp(4.8rem, 8vw, 7.2rem); }
+[data-theme="accessible"] h2 { font-size: clamp(3.8rem, 6vw, 5.2rem); }
+[data-theme="accessible"] h3 { font-size: clamp(2.4rem, 3.6vw, 3.1rem); }
+[data-theme="accessible"] h1, [data-theme="accessible"] h2, [data-theme="accessible"] h3, [data-theme="accessible"] summary { overflow-wrap: normal; word-break: normal; }
+[data-theme="accessible"] p, [data-theme="accessible"] li { overflow-wrap: anywhere; }
+[data-theme="accessible"] .skill-card summary,
+[data-theme="accessible"] .case-role,
+[data-theme="accessible"] .case-card h4,
+[data-theme="accessible"] .case-card__media figcaption,
+[data-theme="accessible"] .footer-inner > p:last-child { font-size: 1.7rem; }
+[data-theme="accessible"] .skill-card summary::after { font-size: 2rem; }
+[data-theme="accessible"] p, [data-theme="accessible"] li, [data-theme="accessible"] summary, [data-theme="accessible"] .hero-description, [data-theme="accessible"] .section-card > p, [data-theme="accessible"] .about-copy p, [data-theme="accessible"] .skills-lead, [data-theme="accessible"] .skill-card p { font-size: 1.7rem; }
+[data-theme="accessible"] .case-label, [data-theme="accessible"] .leisure-group__heading span, [data-theme="accessible"] .certificate-card figcaption, [data-theme="accessible"] .photo-grid figcaption { font-size: 1.45rem; }
+[data-theme="accessible"] .case-steps { gap: 22px; }
+[data-theme="accessible"] .section-card, [data-theme="accessible"] .skill-card { padding: clamp(30px, 5vw, 56px); }
+[data-theme="accessible"] .certificate-card { padding: 14px; }
+@media (max-width: 620px) {
+  [data-theme="accessible"] body { font-size: 2rem; }
+  [data-theme="accessible"] .nav-list a { font-size: 1.3rem; }
+  [data-theme="accessible"] .theme-switcher, [data-theme="accessible"] .theme-switcher select { font-size: 1.2rem; }
+  [data-theme="accessible"] h1 { font-size: clamp(3.5rem, 15vw, 4.8rem); }
+  [data-theme="accessible"] h2 { font-size: clamp(3.1rem, 13vw, 4.4rem); }
+  [data-theme="accessible"] h3 { font-size: 2.4rem; }
+  [data-theme="accessible"] h1, [data-theme="accessible"] h2, [data-theme="accessible"] h3, [data-theme="accessible"] summary { overflow-wrap: normal; word-break: normal; }
+  [data-theme="accessible"] p, [data-theme="accessible"] li, [data-theme="accessible"] summary, [data-theme="accessible"] .hero-description, [data-theme="accessible"] .section-card > p, [data-theme="accessible"] .about-copy p, [data-theme="accessible"] .skills-lead, [data-theme="accessible"] .skill-card p { font-size: 1.5rem; }
+  [data-theme="accessible"] .case-label, [data-theme="accessible"] .leisure-group__heading span, [data-theme="accessible"] .certificate-card figcaption, [data-theme="accessible"] .photo-grid figcaption { font-size: 1.25rem; }
+}
 
 /* ==================== Карточки раздела «Навыки» ==================== */
 .skills-section { min-height: auto; }
