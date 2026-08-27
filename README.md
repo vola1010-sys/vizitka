@@ -21,6 +21,7 @@
 ├── js/
 │   └── app.js
 ├── images/
+│   ├── certificates/
 │   ├── profile/
 │   ├── cases/
 │   ├── personal/
@@ -50,6 +51,7 @@ python -m http.server 8000
 ## Изображения и кейсы
 
 - схемы и обезличенные скриншоты кейсов помещаются в `images/cases/`;
+- сертификаты Bitrix24 помещаются в `images/certificates/`;
 - сейчас в разделе «Кейсы» представлены материалы `warehouse-claim-process.png`, `automatic-email-sending.png`, `employee-messaging.png` и `scheduled-email.png`;
 - личные фотографии - в `images/personal/`. Сейчас «Досуг» разделён на «Восточные танцы», «Путешествия» и «Дрессировка собак»;
 - небольшие графические элементы - в `images/icons/`.
